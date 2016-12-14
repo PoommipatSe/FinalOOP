@@ -7,6 +7,7 @@ package Data;
 import org.lwjgl.input.Mouse;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static Edit.Create.*;
 
@@ -16,7 +17,7 @@ public class Player {
     private TileType[] types;
     private int index;
     private WaveCreate waveManager;
-    private ArrayList<TowerShoot> towerList;
+    private CopyOnWriteArrayList<TowerShoot> towerList;
     private boolean leftMouseButtonDown;
 
 
@@ -28,13 +29,13 @@ public class Player {
         this.types[2] = TileType.Tower1;
         this.index = 1;
         this.waveManager = waveManager;
-        this.towerList = new ArrayList<TowerShoot>();
+        this.towerList = new CopyOnWriteArrayList<TowerShoot>();
         this.leftMouseButtonDown = false;
     }
 
     public void setTile(){
         if (path()) {
-            towerList.add(new TowerShoot(Twload("tw111"), grid.getTile(Mouse.getX() / 32, (HEIGHT - Mouse.getY() - 1) / 32), 10, waveManager.getCurrentWave().getEnemyList()));
+            //towerList.add(new TowerShoot(Twload("tw111"), grid.getTile(Mouse.getX() / 32, (HEIGHT - Mouse.getY() - 1) / 32), 10, waveManager.getCurrentWave().getEnemyList()));
             grid.setTile((int) Math.floor(Mouse.getX() / 32), (int) Math.floor((HEIGHT - Mouse.getY() - 1) / 32), TileType.Tower111);
             grid.setTile((int) Math.floor((Mouse.getX() / 32) + 1), (int) Math.floor((HEIGHT - Mouse.getY() - 1) / 32), TileType.Tower112);
             grid.setTile((int) Math.floor(Mouse.getX() / 32), (int) Math.floor(((HEIGHT - Mouse.getY() - 1) / 32) + 1), TileType.Tower113);
@@ -43,8 +44,8 @@ public class Player {
     }
 
     public void upDate(){
-        for (TowerShoot t : towerList)
-            t.update();
+        //for (TowerShoot t : towerList)
+            //t.update();
 
         if (Mouse.isButtonDown(0)){
             if (Mouse.getX() < 480){
